@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +16,7 @@ import com.senac.projetoIntegrador.atividade.dto.AtividadeDto;
 import com.senac.projetoIntegrador.atividade.response.LatestAtividadesResponse;
 import com.senac.projetoIntegrador.atividade.service.IAtividadeService;
 import com.senac.projetoIntegrador.atividade.dto.UnidadeCurricularDto;
+import com.senac.projetoIntegrador.atividade.exceptions.UserNotFoundException;
 import com.senac.projetoIntegrador.atividade.service.IUnidadeCurricularService;
 
 @RestController
@@ -28,7 +28,7 @@ public class AtividadeController {
 	IUnidadeCurricularService ucService;
 	
 	@GetMapping("/latest/{usuarioId}")
-	public ResponseEntity<List<LatestAtividadesResponse>> retrieveLatestAtividadesByUsuarioId(@PathVariable(required = true, value = "usuarioId") String usuarioId) throws EmptyResultDataAccessException{
+	public ResponseEntity<List<LatestAtividadesResponse>> retrieveLatestAtividadesByUsuarioId(@PathVariable(required = true, value = "usuarioId") String usuarioId) throws UserNotFoundException{
 		List<AtividadeDto> listaAtividadeDto = service.getLatestAtividadesByUsuarioId(usuarioId).stream()
 			.map(item -> new AtividadeDto(
 					item.getDescricao(),
