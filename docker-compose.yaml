@@ -7,36 +7,12 @@ services:
     container_name: projeto-integrador-backend
     ports:
       - 8080:8080
-    depends_on:
-      mysql_db:
-        condition: service_healthy
 
     environment:
-      DB_URL: mysql_db
+      DB_URL: jira.senacrio.com.br
       DB_PORT: 3306
-      DB_DATABASE: projetoIntegrador
-      DB_USERNAME: myuser
-      DB_PASSWORD: mypass
+      DB_DATABASE: bdacompanhamento
+      DB_USERNAME: ads
+      DB_PASSWORD: adsads
       CONNECTION_POOL_MAX_SIZE: 2
       CONNECTION_POOL_MIN_SIZE: 5
-
-  mysql_db:
-    image: mysql:8.0
-    container_name: projeto-integrador-database
-    command: --default-authentication-plugin=mysql_native_password
-    volumes:
-      - ./src/main/resources/mysql.init/createUsers.sql:/docker-entrypoint-initdb.d/1.sql
-      - ./src/main/resources/mysql.init/senacCoinTables.sql:/docker-entrypoint-initdb.d/2.sql
-    environment:
-      MYSQL_USER: api
-      MYSQL_PASSWORD: 123
-      MYSQL_DATABASE: projetoIntegrador
-      MYSQL_ROOT_PASSWORD: root
-    
-    ports:
-      - '3306:3306'
-    healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -P 3306 -proot | grep 'mysqld is alive' || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 5

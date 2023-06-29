@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -17,10 +18,11 @@ import com.senac.projetoIntegrador.atividade.repository.IAtividadeRepository;
 
 @Repository
 public class AtividadeRepository implements IAtividadeRepository{
+	
 	private JdbcTemplate dbConnection;
 	
 	@Autowired
-	QueriesAtiviadade queries;
+	Queries queries;
 	
 	private class AtividadeMapper implements RowMapper<AtividadeDto> {
 		@Override
@@ -37,7 +39,11 @@ public class AtividadeRepository implements IAtividadeRepository{
 		this.dbConnection = new JdbcTemplate(dbConn);
 	}
 	
-	public List<AtividadeDto> getLatestAtividadesByUsuarioId(String usuarioId){
-		return dbConnection.query(queries.getGetLatestAtividadesByUsuarioId(), new AtividadeMapper(), new Object[] {usuarioId});
+	public List<AtividadeDto> getLatestAtividadesByUsuarioId(String usuarioId) throws EmptyResultDataAccessException{ 
+		List<AtividadeDto> query = dbConnection.query(queries.getGetLatestAtividadesByUsuarioId(), new AtividadeMapper(), new Object[] {usuarioId});
+		if(query.size() == 0){
+			throw new EmptyResultDataAccessException(usuarioId, 1, null);
+		}
+		return query;
 	}
 }
