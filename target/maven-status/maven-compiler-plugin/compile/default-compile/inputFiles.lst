@@ -11,6 +11,7 @@ C:\Users\user\Documents\adssenacgit\aprendizagem_ctx_atividade_dashboard\src\mai
 C:\Users\user\Documents\adssenacgit\aprendizagem_ctx_atividade_dashboard\src\main\java\com\senac\projetoIntegrador\atividade\service\impl\UnidadeCurricularService.java
 C:\Users\user\Documents\adssenacgit\aprendizagem_ctx_atividade_dashboard\src\main\java\com\senac\projetoIntegrador\atividade\dto\AtividadeDto.java
 C:\Users\user\Documents\adssenacgit\aprendizagem_ctx_atividade_dashboard\src\main\java\com\senac\projetoIntegrador\atividade\exceptions\UserNotFoundException.java
+C:\Users\user\Documents\adssenacgit\aprendizagem_ctx_atividade_dashboard\src\main\java\com\senac\projetoIntegrador\atividade\response\ErrorResponse.java
 C:\Users\user\Documents\adssenacgit\aprendizagem_ctx_atividade_dashboard\src\main\java\com\senac\projetoIntegrador\health\response\HealthResponse.java
 C:\Users\user\Documents\adssenacgit\aprendizagem_ctx_atividade_dashboard\src\main\java\com\senac\projetoIntegrador\atividade\repository\impl\AtividadeRepository.java
 C:\Users\user\Documents\adssenacgit\aprendizagem_ctx_atividade_dashboard\src\main\java\com\senac\projetoIntegrador\atividade\repository\IUnidadeCurricularRepository.java
